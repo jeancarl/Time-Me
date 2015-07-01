@@ -1,0 +1,46 @@
+<!-- Filename: public/index.html -->
+<html ng-app="TimeMeApp">
+  <head>
+    <title>Time Me!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+    <script src="timeme.js"></script>
+  </head>
+  <body ng-controller="timeMeCtrl" style="font-family:Arial">
+    <h1>Time Me</h1>
+    <div ng-hide="isLoggedIn">
+      Login using your mobile phone number:<br />
+      <input type="text" name="number" ng-model="phonenumber" /> <input type="button" ng-click="verify()" value="Next" />
+      <input type="hidden" name="requestid" value="{{requestid}}" />
+
+      <div ng-show="requestid">
+        Calling you. Please enter verification code:<br />
+        <input type="text" ng-model="code" /> <input type="button" ng-click="check()" value="Login" />
+      </div>
+    </div>
+
+    <div ng-show="isLoggedIn">
+      <div style="float:right">Welcome {{phonenumber}}! <a href="#" ng-click="logout()">Logout</a></div>
+
+      <h2>My Tasks</h2>
+      <table width="50%">
+        <tr>
+          <td>Task</td>
+          <td>Started</td>
+          <td>Ended</td>
+          <td>Timer</td>
+        </tr>
+        <tr ng-repeat="task in tasks">
+          <td>{{task.task}}</td>
+          <td>{{task.starttime | date:'M/dd HH:mm'}}</td>
+          <td><span ng-show="task.endtime > 0">{{task.endtime | date:'M/dd HH:mm'}}</span></td>
+          <td>{{elapsedTime(task.elapsed)}}</td>
+        </tr>
+      </table>
+
+      <h2>How to use</h2>
+      <p>Text begin &lt;task&gt; to start timing a task.<br />
+      Text finish &lt;task&gt; to stop timing a task.<br />
+      Text &lt;task&gt; to get start, end, and elapsed time.</p>
+    </div>
+  </body>
+</html>

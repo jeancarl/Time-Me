@@ -1,0 +1,16 @@
+{
+  "name": "time-me",
+  "description": "Time Me application for Node.js",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "*",
+    "mongoose": "*",
+    "url": "*",
+    "body-parser": "*",
+    "cookie-parser": "*",
+    "express-session": "*",
+    "connect-mongo": "*",
+    "request": "*"
+  }
+}
